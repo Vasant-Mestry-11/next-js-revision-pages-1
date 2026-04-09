@@ -1,8 +1,9 @@
 import Link from "next/link";
 import LogoutButton from "./LogoutButton";
+import { getSession } from "../_lib/session";
 
-const Navbar = () => {
-  const session = false;
+const Navbar = async () => {
+  const session = await getSession();
 
   return (
     <nav className="bg-white shadow-sm">
