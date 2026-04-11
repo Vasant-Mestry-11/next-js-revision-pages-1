@@ -11,7 +11,7 @@ export default function Home() {
       </div>
 
       <Image
-        src="/contacts.jpg"
+        src="/contact.jpg"
         alt="contact manager"
         width={300}
         height={300}
