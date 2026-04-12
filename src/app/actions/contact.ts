@@ -11,17 +11,17 @@ export const createContactAction = async (
   prevState: unknown,
   formData: FormData,
 ) => {
-  if (!formData) {
+  if (!formData.get("name")) {
     return {
-      error: "Form data is missing",
+      error: "Contact data is missing",
     };
   }
 
   const user = await getSession();
 
   const newContact: ContactType = {
-    name: user?.id,
-    email: user?.email,
+    name: formData.get("name") as string,
+    email: formData.get("email") as string,
     userId: user?.id,
   };
 
@@ -32,7 +32,6 @@ export const createContactAction = async (
     return {
       success: true,
     };
-    
   } catch (error) {
     console.log("Error in creating contact: ", error);
     return {

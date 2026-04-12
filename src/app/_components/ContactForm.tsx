@@ -1,14 +1,24 @@
-"use client"
+"use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { ContactType } from "../_types/contact";
+import { useRouter } from "next/navigation";
 
 type ContactFormProps = {
-  action: (prevState: unknown, formData: FormData) => Promise<unknown>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  action: (prevState: any, formData: FormData) => Promise<any>;
   contact?: ContactType;
 };
 const ContactForm = ({ action, contact }: ContactFormProps) => {
   const [state, formAction] = useActionState(action, null);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (state?.success) {
+      router.push("/contact");
+    }
+  }, [state, router]);
 
   return (
     <form action={formAction} className="space-x-4">
@@ -44,6 +54,9 @@ const ContactForm = ({ action, contact }: ContactFormProps) => {
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-5 sm:text-sm p-2"
         />
       </div>
+      {state?.error && (
+        <div className="text-red-500 text-sm mt-2">{state.error}</div>
+      )}
       <button
         type="submit"
         className="mt-4 justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-600"
