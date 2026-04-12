@@ -44,7 +44,7 @@ const ContactPage = async () => {
         </Link>
       </div>
 
-      <ContactList />
+      <ContactList contacts={contacts} />
     </div>
   );
 };
