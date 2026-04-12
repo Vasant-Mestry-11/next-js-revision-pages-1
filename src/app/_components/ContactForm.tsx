@@ -22,6 +22,8 @@ const ContactForm = ({ action, contact }: ContactFormProps) => {
 
   return (
     <form action={formAction} className="space-x-4">
+      <input type="hidden" name="id" value={contact?.id} />
+
       <div>
         <label
           htmlFor="name"
@@ -35,6 +37,7 @@ const ContactForm = ({ action, contact }: ContactFormProps) => {
           placeholder="Enter your name"
           required
           id="name"
+          defaultValue={contact?.name || ""}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-5 sm:text-sm p-2"
         />
       </div>
@@ -51,6 +54,7 @@ const ContactForm = ({ action, contact }: ContactFormProps) => {
           placeholder="Enter your email"
           required
           id="email"
+          defaultValue={contact?.email || ""}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-5 sm:text-sm p-2"
         />
       </div>

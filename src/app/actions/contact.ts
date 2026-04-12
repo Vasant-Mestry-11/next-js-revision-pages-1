@@ -3,7 +3,7 @@
 // server functions
 
 import { revalidatePath } from "next/cache";
-import { createContact, deleteContact } from "../api/contact";
+import { createContact, deleteContact, updateContact } from "../api/contact";
 import { getSession } from "../_lib/session";
 import { ContactType } from "../_types/contact";
 
@@ -43,7 +43,31 @@ export const createContactAction = async (
 export const updateContactAction = async (
   prevState: unknown,
   formData: FormData,
-) => {};
+) => {
+  const user = await getSession();
+
+  const id = formData.get("id") as string;
+
+  const updatedContact: ContactType = {
+    name: formData.get("name") as string,
+    email: formData.get("email") as string,
+    userId: Number(user?.id) as number,
+  };
+
+  try {
+    await updateContact(id, updatedContact);
+    revalidatePath("/contact");
+
+    return {
+      success: true,
+    };
+  } catch (error) {
+    console.log("Error in updating contact: ", error);
+    return {
+      error: "Failed to update the contact",
+    };
+  }
+};
 
 export const deleteContactAction = async (
   prevState: unknown,
