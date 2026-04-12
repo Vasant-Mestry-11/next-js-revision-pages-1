@@ -1,27 +1,27 @@
 {
   "contacts": [
     {
-      "id": "1",
+      "id": 1,
       "name": "John Doe",
       "email": "john@test.com",
-      "userId": "1"
+      "userid": 1
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "John Doe 2",
       "email": "john@test.com",
-      "userId": "1"
+      "userid": 1
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "John Doe 3",
       "email": "john@test.com",
-      "userId": "2"
+      "userid": 2
     }
   ],
   "users": [
     {
-      "id": "1",
+      "id": 1,
       "name": "user1",
       "email": "user1@gmail.com",
       "password": "123456"

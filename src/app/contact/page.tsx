@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getSession } from "../_lib/session";
 import { getContacts } from "../api/contact";
+import ContactList from "../_components/ContactList";
 
 const ContactPage = async () => {
   const user = await getSession();
@@ -16,7 +17,9 @@ const ContactPage = async () => {
       </div>
     );
   }
-  const contacts = await getContacts("1");
+  const contacts = await getContacts(user.id);
+
+  console.log(contacts);
 
   if (!contacts || contacts.length === 0) {
     return (
@@ -41,7 +44,7 @@ const ContactPage = async () => {
         </Link>
       </div>
 
-      
+      <ContactList />
     </div>
   );
 };
