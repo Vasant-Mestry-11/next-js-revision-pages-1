@@ -22,7 +22,7 @@ export const createContactAction = async (
   const newContact: ContactType = {
     name: formData.get("name") as string,
     email: formData.get("email") as string,
-    userId: Number(user?.id) as number,
+    userid: Number(user?.id) as number,
   };
 
   try {
@@ -51,7 +51,7 @@ export const updateContactAction = async (
   const updatedContact: ContactType = {
     name: formData.get("name") as string,
     email: formData.get("email") as string,
-    userId: Number(user?.id) as number,
+    userid: Number(user?.id) as number,
   };
 
   try {

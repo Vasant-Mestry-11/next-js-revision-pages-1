@@ -2,5 +2,5 @@ export interface ContactType {
   id?: string;
   name?: string;
   email?: string;
-  userId?: number | undefined;
+  userid?: number | undefined;
 }

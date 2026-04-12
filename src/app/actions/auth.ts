@@ -9,11 +9,9 @@ const API_URL = "http://localhost:3001/";
 
 export const loginAction = async (formData: FormData) => {
   const email = formData.get("email");
-  const password = formData.get("password");
-  console.log("=================", email, password);
+  // const password = formData.get("password");
   try {
     const response = await axios.get(`${API_URL}/users?email=${email}`);
-    console.log(response.data);
     const user: UserType = await response.data[0];
     if (!user) throw new Error("Invalid Credentials");
 
