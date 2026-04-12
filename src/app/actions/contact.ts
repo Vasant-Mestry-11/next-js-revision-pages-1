@@ -11,7 +11,7 @@ export const createContactAction = async (
   prevState: unknown,
   formData: FormData,
 ) => {
-  if (!formData.get("name")) {
+  if (!formData) {
     return {
       error: "Contact data is missing",
     };
