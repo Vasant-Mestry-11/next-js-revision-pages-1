@@ -22,7 +22,7 @@ export const createContactAction = async (
   const newContact: ContactType = {
     name: formData.get("name") as string,
     email: formData.get("email") as string,
-    userId: user?.id,
+    userId: Number(user?.id) as number,
   };
 
   try {
