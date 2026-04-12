@@ -3,7 +3,48 @@
 // server functions
 
 import { revalidatePath } from "next/cache";
-import { deleteContact } from "../api/contact";
+import { createContact, deleteContact } from "../api/contact";
+import { getSession } from "../_lib/session";
+import { ContactType } from "../_types/contact";
+
+export const createContactAction = async (
+  prevState: unknown,
+  formData: FormData,
+) => {
+  if (!formData) {
+    return {
+      error: "Form data is missing",
+    };
+  }
+
+  const user = await getSession();
+
+  const newContact: ContactType = {
+    name: user?.id,
+    email: user?.email,
+    userId: user?.id,
+  };
+
+  try {
+    await createContact(newContact);
+    revalidatePath("/contact");
+
+    return {
+      success: true,
+    };
+    
+  } catch (error) {
+    console.log("Error in creating contact: ", error);
+    return {
+      error: "Failed to create the contact",
+    };
+  }
+};
+
+export const updateContactAction = async (
+  prevState: unknown,
+  formData: FormData,
+) => {};
 
 export const deleteContactAction = async (
   prevState: unknown,
